@@ -1,0 +1,103 @@
+# Synthetic fixtures only. Exact, case-sensitive branch/format profiles.
+# Basename patterns match files below either input/ or input/processable/.
+[currency_precision]
+USD = 2
+PLN = 2
+JPY = 0
+
+[[sources]]
+name = "branch-a-csv"
+format = "csv"
+patterns = ["branch_a_*.csv"]
+encoding = "utf-8-sig"
+delimiter = ","
+date_formats = ["%Y-%m-%d"]
+decimal_separator = "."
+[sources.columns]
+branch_id = "Branch ID"
+transaction_id = "Transaction ID"
+transaction_date = "Date"
+customer_id = "Customer ID"
+amount = "Amount"
+currency = "Currency"
+
+[[sources]]
+name = "branch-a-xlsx"
+format = "xlsx"
+patterns = ["branch_a_*.xlsx"]
+sheets = ["Sales"]
+allow_excel_dates = true
+date_formats = ["%Y-%m-%d"]
+decimal_separator = "."
+[sources.columns]
+branch_id = "Branch ID"
+transaction_id = "Transaction ID"
+transaction_date = "Date"
+customer_id = "Customer ID"
+amount = "Amount"
+currency = "Currency"
+
+[[sources]]
+name = "branch-b-csv"
+format = "csv"
+patterns = ["branch_b_*.csv"]
+encoding = "utf-8-sig"
+delimiter = ";"
+date_formats = ["%d/%m/%Y"]
+decimal_separator = ","
+[sources.columns]
+branch_id = "store"
+transaction_id = "sale_id"
+transaction_date = "sold_at"
+customer_id = "client_ref"
+amount = "net_value"
+currency = "ccy"
+
+[[sources]]
+name = "branch-b-xlsx"
+format = "xlsx"
+patterns = ["branch_b_*.xlsx"]
+sheets = ["Sales"]
+allow_excel_dates = true
+date_formats = ["%d/%m/%Y"]
+decimal_separator = ","
+[sources.columns]
+branch_id = "store"
+transaction_id = "sale_id"
+transaction_date = "sold_at"
+customer_id = "client_ref"
+amount = "net_value"
+currency = "ccy"
+
+[[sources]]
+name = "branch-c-csv"
+format = "csv"
+patterns = ["branch_c_*.csv"]
+encoding = "utf-8-sig"
+delimiter = ","
+date_formats = ["%Y/%m/%d"]
+decimal_separator = "."
+[sources.columns]
+branch_id = "location_code"
+transaction_id = "order_no"
+transaction_date = "order_date"
+customer_id = "account_id"
+amount = "sales_total"
+currency = "currency_code"
+
+[[sources]]
+name = "branch-c-xlsx"
+format = "xlsx"
+patterns = ["branch_c_*.xlsx"]
+sheets = ["Sales"]
+allow_excel_dates = true
+date_formats = ["%Y/%m/%d"]
+decimal_separator = "."
+[sources.columns]
+branch_id = "location_code"
+transaction_id = "order_no"
+transaction_date = "order_date"
+customer_id = "account_id"
+amount = "sales_total"
+currency = "currency_code"
+

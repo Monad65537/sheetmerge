@@ -1,0 +1,4 @@
+﻿location_code,order_no,order_date,account_id,sales_total,currency_code
+003,000001,2024/01/02,000301,1000,JPY
+003,000002,2024/01/03,000302,2500,JPY
+003,000003,2024/01/04,000303,300,JPY

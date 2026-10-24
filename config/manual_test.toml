@@ -1,0 +1,16 @@
+[currency_precision]
+PLN = 2
+
+[[sources]]
+name = "manual-test"
+format = "csv"
+patterns = ["transactions.csv"]
+date_formats = ["%Y-%m-%d"]
+
+[sources.columns]
+branch_id = "branch_id"
+transaction_id = "transaction_id"
+transaction_date = "transaction_date"
+customer_id = "customer_id"
+amount = "amount"
+currency = "currency"

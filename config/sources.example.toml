@@ -1,0 +1,65 @@
+# Filename patterns use case-sensitive PurePosixPath.match rules.
+# A basename pattern such as *.csv also matches files in nested directories.
+# Optional workload defaults, not universal safe thresholds. Tune together for
+# your expected files and available resources; omit values to use these defaults.
+[limits]
+max_file_bytes = 20_971_520
+max_worksheet_rows = 100_001
+max_worksheet_columns = 256
+max_total_records = 100_000
+max_zip_members = 1_000
+max_zip_member_bytes = 33_554_432
+max_zip_uncompressed_bytes = 134_217_728
+max_zip_compression_ratio = 200
+max_xml_depth = 64
+max_xml_elements = 2_000_000
+
+[currency_precision]
+USD = 2
+PLN = 2
+JPY = 0
+KWD = 3
+
+[[sources]]
+name = "csv-sales"
+format = "csv"
+patterns = ["*.csv"]
+header_row = 1
+encoding = "utf-8-sig"
+delimiter = ","
+quotechar = '"'
+date_formats = ["%Y-%m-%d"]
+decimal_separator = "."
+trim_whitespace = false
+uppercase_currency = false
+ignored_headers = []
+
+[sources.columns]
+branch_id = "Branch"
+transaction_id = "Receipt"
+transaction_date = "Date"
+customer_id = "Customer"
+amount = "Total"
+currency = "Currency"
+
+[[sources]]
+name = "excel-sales"
+format = "xlsx"
+patterns = ["*.xlsx"]
+sheets = ["Sales"]
+header_row = 1
+date_formats = ["%Y-%m-%d"]
+allow_excel_dates = true
+decimal_separator = "."
+trim_whitespace = false
+uppercase_currency = false
+ignored_headers = []
+
+[sources.columns]
+branch_id = "Branch"
+transaction_id = "Receipt"
+transaction_date = "Date"
+customer_id = "Customer"
+amount = "Total"
+currency = "Currency"
+

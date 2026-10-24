@@ -1,0 +1,20 @@
+{
+  "file_counts": {"csv": 6, "xlsx": 6, "processable": 11, "structural_errors": 1},
+  "counts": {"input": 33, "accepted": 16, "rejected": 14, "redundant": 3},
+  "reason_counts": {
+    "CONFLICTING_TRANSACTION": 6,
+    "EXACT_DUPLICATE": 3,
+    "EXCESS_FRACTIONAL_PRECISION": 2,
+    "KEY_HAS_INVALID_CANDIDATE": 2,
+    "INVALID_DATE": 3,
+    "MISSING_REQUIRED_VALUE": 3
+  },
+  "unquantified_count": 5,
+  "unknown_currency_count": 0,
+  "monetary_complete": false,
+  "currencies": {
+    "USD": {"input": "356.55", "accepted": "141.45", "rejected": "115.00", "redundant": "100.10"},
+    "PLN": {"input": "583.35", "accepted": "220.35", "rejected": "163.00", "redundant": "200.00"},
+    "JPY": {"input": "7389", "accepted": "1290", "rejected": "5099", "redundant": "1000"}
+  }
+}
