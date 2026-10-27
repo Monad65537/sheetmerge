@@ -25,6 +25,71 @@ Tests generate synthetic fixtures in pytest temporary directories. If the system
 temporary directory is inaccessible in a sandbox, set `TMP` and `TEMP` to an
 accessible temporary directory before running pytest.
 
+## Quick demonstration — synthetic sales consolidation
+
+SheetMerge includes a reproducible example using synthetic CSV and Excel sales files from three branches.
+
+The example demonstrates heterogeneous input schemas, duplicate detection, conflicting transactions, data validation, and exact monetary reconciliation.
+
+After installing the application, run the following command from the repository root:
+
+```powershell
+python -m sheetmerge --config samples/sources.toml --input samples/input/processable --output outputs/sample-review
+```
+
+The demonstration intentionally contains problematic records. Therefore, **exit code `1` is expected**: SheetMerge successfully publishes the output bundle but identifies data requiring manual review.
+
+### Expected results
+
+| Classification | Records |
+|---|---:|
+| Input records | 33 |
+| Accepted | 16 |
+| Rejected | 14 |
+| Redundant | 3 |
+
+The reconciliation invariant is:
+
+\[
+33 = 16 + 14 + 3
+\]
+
+Accepted monetary totals are:
+
+| Currency | Accepted amount |
+|---|---:|
+| USD | 141.45 |
+| PLN | 220.35 |
+| JPY | 1290 |
+
+Five monetary amounts remain unquantified, so monetary coverage is incomplete as expected.
+
+### Inspecting the output
+
+After the command finishes, inspect the generated directory:
+
+```powershell
+Get-ChildItem outputs\sample-review
+```
+
+The output contains:
+
+- `master.csv` and `master.xlsx`: accepted consolidated transactions.
+- `exclusions.csv`: rejected and redundant records with reasons.
+- `audit.jsonl`: record-level processing evidence.
+- `reconciliation.csv` and `reconciliation.json`: count and monetary reconciliation results.
+- `manifest.json`: configuration, source, and artifact metadata.
+
+To inspect the reconciliation report:
+
+```powershell
+Get-Content outputs\sample-review\reconciliation.json
+```
+
+For the full description of the sample inputs, expected results, and intentional structural failures, see [Synthetic Sales Fixtures](samples/README.md).
+
+**Note:** The output directory must not already exist. Use a different output directory name when repeating the demonstration. Input files are not modified.
+
 ## Run a batch
 
 For a ready-made mixed CSV/XLSX example, see the [12 synthetic sample files and
